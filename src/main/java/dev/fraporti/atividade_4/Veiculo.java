@@ -89,7 +89,7 @@ public abstract class Veiculo {
                 "Velocidade maxima: "+ this.getVelocMax() + "\n" +
                 "Quantidade de rodas: "+ this.getQtdRodas() + "\n" +
                 "Calculo velocidade: "+ this.calcVel(this.getVelocMax()) + "\n" +
-                "Motor -> { potencia: "+ this.getMotor().getPotencia() + " " +
+                "Motor -> { potencia: "+ this.getMotor().getPotencia() + ", " +
                 "Quantidade de pistões: "+ this.getMotor().getQtdPist() + " }";
     }
 }
