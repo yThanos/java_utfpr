@@ -81,7 +81,7 @@ public class ProjectZipper {
             return;
         }
 
-        if(init.getName().equals("src")){
+        if(init.getName().equals("fraporti")){
             Arrays.stream(fs).forEach(f->{
                 if(f.getName().startsWith("atividade")){
                     int c = Integer.parseInt(f.getName().split("_")[1]);
