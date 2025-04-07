@@ -9,7 +9,7 @@ import dev.fraporti.atividade_5.model.Veiculo;
  * @author vitor.rosmann on 13/03/2025
  */
 public class Teste {
-    private static final String OPTIONS = """
+    private static final String MENU_OPTIONS = """
                     Sistema de Gestão de Veículos - Menu Inicial
                     1. Cadastrar Veículo de Passeio
                     2. Cadastrar Veículo de Carga
@@ -35,7 +35,7 @@ public class Teste {
 
         while(loop) {
             try{
-                option = Integer.parseInt(Leitura.entDados(OPTIONS));
+                option = Integer.parseInt(Leitura.entDados(MENU_OPTIONS));
 
                 switch (option) {
                     case 1:
@@ -79,8 +79,10 @@ public class Teste {
         if(noPasseios < 5) {
             Passeio passeio = new Passeio();
             try{
+                System.out.println("Informe os dados do veiculo de passeio!");
                 fillVehicleFields(passeio);
             } catch (RuntimeException e){
+                /// already an existing vehicle with said plate
                 return;
             }
 
@@ -110,8 +112,10 @@ public class Teste {
         if(noCargas < 5) {
             Carga carga = new Carga();
             try{
+                System.out.println("Informe os dados do veiculo de carga!");
                 fillVehicleFields(carga);
             } catch (RuntimeException e){
+                /// already an existing vehicle with said plate
                 return;
             }
 
@@ -146,7 +150,6 @@ public class Teste {
     }
 
     private static <T extends Veiculo> void fillVehicleFields(T veiculo) {
-        System.out.println("Informe os dados do veiculo!");
         veiculo.setMarca(Leitura.entDados("Marca:"));
         veiculo.setModelo(Leitura.entDados("Modelo:"));
         veiculo.setCor(Leitura.entDados("Cor:"));
