@@ -1,10 +1,12 @@
 package dev.fraporti.atividade_7;
 
-import dev.fraporti.atividade_5.model.Carga;
-import dev.fraporti.atividade_5.model.Leitura;
-import dev.fraporti.atividade_5.model.Passeio;
-import dev.fraporti.atividade_5.model.Veiculo;
+import dev.fraporti.atividade_7.database.BDVeiculos;
+import dev.fraporti.atividade_7.model.Carga;
+import dev.fraporti.atividade_7.model.Leitura;
+import dev.fraporti.atividade_7.model.Passeio;
+import dev.fraporti.atividade_7.model.Veiculo;
 import dev.fraporti.atividade_7.exception.VeicExistException;
+import dev.fraporti.atividade_7.exception.VelocException;
 
 /**
  * @author vitor.rosmann on 13/03/2025
@@ -21,8 +23,7 @@ public class Teste {
                     7. Sair do Sistema
                     """;
 
-    private static final Passeio[] PASSEIOS = new Passeio[5];
-    private static final Carga[] CARGAS = new Carga[5];
+    private static final BDVeiculos repository = new BDVeiculos();
     private static int noPasseios = 0;
     private static int noCargas = 0;
 
@@ -97,11 +98,11 @@ public class Teste {
                 }
             } while(!done);
 
-            PASSEIOS[noPasseios] = passeio;
+            repository.getListaPasseio()[noPasseios] = passeio;
             noPasseios++;
 
 
-            if(Leitura.entDados("Deseja cadastrar outros veiculo de passeio? (S/N)").equalsIgnoreCase("S")){
+            if(Leitura.entDados("Deseja cadastrar outros veiculo de passeio? (S/N)").contains("S")){
                 cadastrarVeiculoPasseio();
             }
         } else {
@@ -139,7 +140,7 @@ public class Teste {
                 }
             } while(!done);
 
-            CARGAS[noCargas] = carga;
+            repository.getListaCarga()[noCargas] = carga;
             noCargas++;
 
             if(Leitura.entDados("Deseja cadastrar outros veiculo de carga? (S/N)").equalsIgnoreCase("S")){
@@ -178,6 +179,20 @@ public class Teste {
             } catch (NumberFormatException e){
                 done = false;
                 System.out.println("Informe um valor numérico!");
+            } catch (VelocException e){
+                if(veiculo instanceof Passeio){
+                    try {
+                        veiculo.setVelocMax(100);
+                    } catch (VelocException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                } else {
+                    try {
+                        veiculo.setVelocMax(90);
+                    } catch (VelocException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
             }
         } while(!done);
         do{
@@ -206,7 +221,7 @@ public class Teste {
             return;
         }
         for(int i = 0; i < noPasseios; i++){
-            System.out.println(PASSEIOS[i]);
+            System.out.println(repository.getListaPasseio()[i]);
         }
     }
 
@@ -216,7 +231,7 @@ public class Teste {
             return;
         }
         for(int i = 0; i < noCargas; i++){
-            System.out.println(CARGAS[i]);
+            System.out.println(repository.getListaCarga()[i]);
         }
     }
 
@@ -226,9 +241,9 @@ public class Teste {
             return false;
         }
         for(int i = 0; i < noPasseios; i++){
-            if(PASSEIOS[i].getPlaca().equals(placa)){
+            if(repository.getListaPasseio()[i].getPlaca().equals(placa)){
                 if(search) return true;
-                System.out.println(PASSEIOS[i]);
+                System.out.println(repository.getListaPasseio()[i]);
                 return true;
             }
         }
@@ -243,9 +258,9 @@ public class Teste {
             return false;
         }
         for(int i = 0; i < noCargas; i++){
-            if(CARGAS[i].getPlaca().equals(placa)){
+            if(repository.getListaCarga()[i].getPlaca().equals(placa)){
                 if(search) return true;
-                System.out.println(CARGAS[i]);
+                System.out.println(repository.getListaCarga()[i]);
                 return true;
             }
         }

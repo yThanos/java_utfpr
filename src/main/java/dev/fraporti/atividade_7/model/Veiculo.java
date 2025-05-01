@@ -1,5 +1,7 @@
 package dev.fraporti.atividade_7.model;
 
+import dev.fraporti.atividade_7.exception.VelocException;
+
 /**
  * @author vitor.rosmann on 13/03/2025
  */
@@ -60,7 +62,10 @@ public abstract class Veiculo {
         return velocMax;
     }
 
-    public final void setVelocMax(float velocMax) {
+    public final void setVelocMax(float velocMax) throws VelocException {
+        if(velocMax < 80 || velocMax > 110){
+            throw new VelocException("A velocidade máxima está fora dos limites brasileiros");
+        }
         this.velocMax = velocMax;
     }
 

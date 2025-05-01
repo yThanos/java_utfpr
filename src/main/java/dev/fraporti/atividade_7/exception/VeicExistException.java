@@ -6,5 +6,6 @@ package dev.fraporti.atividade_7.exception;
 public class VeicExistException extends Exception {
     public VeicExistException(String message){
         super(message);
+        System.out.println(message);
     }
 }

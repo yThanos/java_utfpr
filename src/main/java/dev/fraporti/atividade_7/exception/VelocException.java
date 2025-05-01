@@ -6,5 +6,6 @@ package dev.fraporti.atividade_7.exception;
 public class VelocException extends Exception {
     public VelocException(String message){
         super(message);
+        System.out.println(message);
     }
 }

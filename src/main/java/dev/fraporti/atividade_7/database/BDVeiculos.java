@@ -7,8 +7,13 @@ import dev.fraporti.atividade_7.model.Passeio;
  * @author vitor.rosmann on 30/04/2025
  */
 public class BDVeiculos {
-    private Passeio[] listaPasseio = new Passeio[5];
-    private Carga[] listaCarga = new Carga[5];
+    private Passeio[] listaPasseio;
+    private Carga[] listaCarga;
+
+    public BDVeiculos() {
+        this.listaPasseio = new Passeio[5];
+        this.listaCarga = new Carga[5];
+    }
 
     public Passeio[] getListaPasseio() {
         return listaPasseio;
