@@ -159,8 +159,8 @@ public class Teste {
         veiculo.setCor(Leitura.entDados("Cor:"));
 
         String placa = Leitura.entDados("Placa:");
-        if(imprimeCargaPelaPlaca(placa, true) == null || imprimePasseioPelaPlaca(placa, true) == null){
-            System.out.println("Já existe um veiculo com esta placa cadastrado!");
+        if(imprimeCargaPelaPlaca(placa, true) != null || imprimePasseioPelaPlaca(placa, true) != null){
+            //System.out.println("Já existe um veiculo com esta placa cadastrado!");
             throw new VeicExistException("Já existe um veiculo com esta placa cadastrado!");
         }
         veiculo.setPlaca(placa);
