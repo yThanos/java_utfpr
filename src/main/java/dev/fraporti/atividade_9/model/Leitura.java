@@ -1,4 +1,4 @@
-package dev.fraporti.atividade_8.model;
+package dev.fraporti.atividade_9.model;
 
 import java.util.Scanner;
 

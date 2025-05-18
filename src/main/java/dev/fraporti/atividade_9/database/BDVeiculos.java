@@ -1,7 +1,7 @@
-package dev.fraporti.atividade_8.database;
+package dev.fraporti.atividade_9.database;
 
-import dev.fraporti.atividade_8.model.Carga;
-import dev.fraporti.atividade_8.model.Passeio;
+import dev.fraporti.atividade_9.model.Carga;
+import dev.fraporti.atividade_9.model.Passeio;
 
 import java.util.ArrayList;
 import java.util.List;

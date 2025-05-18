@@ -1,6 +1,6 @@
-package dev.fraporti.atividade_8.model;
+package dev.fraporti.atividade_9.model;
 
-import dev.fraporti.atividade_8.exception.VelocException;
+import dev.fraporti.atividade_9.exception.VelocException;
 
 /**
  * @author vitor.rosmann on 13/03/2025

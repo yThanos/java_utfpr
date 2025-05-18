@@ -1,4 +1,4 @@
-package dev.fraporti.atividade_8.model;
+package dev.fraporti.atividade_9.model;
 
 /**
  * @author vitor.rosmann on 13/03/2025

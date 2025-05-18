@@ -1,32 +1,18 @@
-package dev.fraporti.atividade_8;
+package dev.fraporti.atividade_9;
 
-import dev.fraporti.atividade_8.database.BDVeiculos;
-import dev.fraporti.atividade_8.model.Carga;
-import dev.fraporti.atividade_8.model.Leitura;
-import dev.fraporti.atividade_8.model.Passeio;
-import dev.fraporti.atividade_8.model.Veiculo;
-import dev.fraporti.atividade_8.exception.VeicExistException;
-import dev.fraporti.atividade_8.exception.VelocException;
-
-import java.util.Objects;
+import dev.fraporti.atividade_9.database.BDVeiculos;
+import dev.fraporti.atividade_9.frames.GestaoVeiculosFrame;
+import dev.fraporti.atividade_9.model.Carga;
+import dev.fraporti.atividade_9.model.Leitura;
+import dev.fraporti.atividade_9.model.Passeio;
+import dev.fraporti.atividade_9.model.Veiculo;
+import dev.fraporti.atividade_9.exception.VeicExistException;
+import dev.fraporti.atividade_9.exception.VelocException;
 
 /**
  * @author vitor.rosmann on 13/03/2025
  */
 public class Teste {
-    private static final String MENU_OPTIONS = """
-                    Sistema de Gestão de Veículos - Menu Inicial
-                    1. Cadastrar Veículo de Passeio
-                    2. Cadastrar Veículo de Carga
-                    3. Imprimir Todos os Veículos de Passeio
-                    4. Imprimir Todos os Veículos de Carga
-                    5. Imprimir Veículo de Passeio pela Placa
-                    6. Imprimir Veículo de Carga pela Placa
-                    7. Excluir Veículo de Passeio pela Placa
-                    8. Excluir Veículo de Carga pela Placa
-                    9. Sair do Sistema
-                    """;
-
     private static final BDVeiculos repository = new BDVeiculos();
 
     public static void main(String[] args) {
@@ -34,62 +20,10 @@ public class Teste {
     }
 
     private static void menu() {
-        boolean loop = true;
-        int option;
-
-        while(loop) {
-            try{
-                option = Integer.parseInt(Leitura.entDados(MENU_OPTIONS));
-
-                switch (option) {
-                    case 1:
-                        cadastrarVeiculoPasseio();
-                        break;
-                    case 2:
-                        cadastrarVeiculoCarga();
-                        break;
-                    case 3:
-                        imprimeTodosPasseio();
-                        break;
-                    case 4:
-                        imprimeTodosCarga();
-                        break;
-                    case 5: {
-                        String placa = Leitura.entDados("Placa buscada:");
-                        imprimePasseioPelaPlaca(placa, false);
-                        break;
-                    }
-                    case 6 : {
-                        String placa = Leitura.entDados("Placa buscada:");
-                        imprimeCargaPelaPlaca(placa, false);
-                        break;
-                    }
-                    case 7 : {
-                        String placa = Leitura.entDados("Placa do veiculo a ser excluído:");
-                        deletePasseioByPlate(placa);
-                        break;
-                    }
-                    case 8 : {
-                        String placa = Leitura.entDados("Placa do veiculo a ser excluído:");
-                        deleteCargaByPlate(placa);
-                        break;
-                    }
-                    case 9:
-                        System.out.println("Até mais!");
-                        loop = false;
-                        break;
-                    default:
-                        System.out.println("Digite um valor");
-                        break;
-                }
-
-            } catch (NumberFormatException e){
-                System.out.println("Informe apenas o Numero da opção desejada!");
-            }
-        }
+       new GestaoVeiculosFrame();
     }
 
-    private static void cadastrarVeiculoPasseio() {
+    public static void cadastrarVeiculoPasseio() {
         Passeio passeio = new Passeio();
         try{
             System.out.println("Informe os dados do veiculo de passeio!");
@@ -117,7 +51,7 @@ public class Teste {
         }
     }
 
-    private static void cadastrarVeiculoCarga() {
+    public static void cadastrarVeiculoCarga() {
         Carga carga = new Carga();
         try{
             System.out.println("Informe os dados do veiculo de carga!");
@@ -153,7 +87,7 @@ public class Teste {
         }
     }
 
-    private static <T extends Veiculo> void fillVehicleFields(T veiculo) throws VeicExistException {
+    public static <T extends Veiculo> void fillVehicleFields(T veiculo) throws VeicExistException {
         veiculo.setMarca(Leitura.entDados("Marca:"));
         veiculo.setModelo(Leitura.entDados("Modelo:"));
         veiculo.setCor(Leitura.entDados("Cor:"));
@@ -217,7 +151,7 @@ public class Teste {
         } while(!done);
     }
 
-    private static void imprimeTodosPasseio() {
+    public static void imprimeTodosPasseio() {
         if(repository.getListaPasseio().isEmpty()){
             System.out.println("Nenhum veiculo de passeio cadastrado!");
             return;
@@ -227,7 +161,7 @@ public class Teste {
         }
     }
 
-    private static void imprimeTodosCarga() {
+    public static void imprimeTodosCarga() {
         if(repository.getListaCarga().isEmpty()){
             System.out.println("Nenhum veiculo de carga cadastrado!");
             return;
@@ -237,7 +171,7 @@ public class Teste {
         }
     }
 
-    private static Passeio imprimePasseioPelaPlaca(String placa, boolean search) {
+    public static Passeio imprimePasseioPelaPlaca(String placa, boolean search) {
         if(repository.getListaPasseio().isEmpty() && !search){
             System.out.println("Nenhum veiculo de passeio cadastrado!");
             return null;
@@ -254,7 +188,7 @@ public class Teste {
         return null;
     }
 
-    private static Carga imprimeCargaPelaPlaca(String placa, boolean search) {
+    public static Carga imprimeCargaPelaPlaca(String placa, boolean search) {
         if(repository.getListaCarga().isEmpty() && !search){
             System.out.println("Nenhum veiculo de carga cadastrado!");
             return null;
@@ -271,7 +205,7 @@ public class Teste {
         return null;
     }
 
-    private static void deletePasseioByPlate(String plate) {
+    public static void deletePasseioByPlate(String plate) {
         Passeio passeio = imprimePasseioPelaPlaca(plate, true);
         if(passeio == null){
             System.out.println("Nenhum veiculo de passeio com essa placa!");
@@ -281,7 +215,7 @@ public class Teste {
         }
     }
 
-    private static void deleteCargaByPlate(String plate) {
+    public static void deleteCargaByPlate(String plate) {
         Carga carga = imprimeCargaPelaPlaca(plate, true);
         if(carga == null){
             System.out.println("Nenhum veiculo de passeio com essa placa!");

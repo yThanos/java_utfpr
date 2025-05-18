@@ -1,6 +1,6 @@
-package dev.fraporti.atividade_8.model;
+package dev.fraporti.atividade_9.model;
 
-import dev.fraporti.atividade_8.interfaces.Calcular;
+import dev.fraporti.atividade_9.interfaces.Calcular;
 
 /**
  * @author vitor.rosmann on 31/03/2025
