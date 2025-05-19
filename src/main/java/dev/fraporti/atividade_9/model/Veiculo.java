@@ -1,6 +1,10 @@
 package dev.fraporti.atividade_9.model;
 
+import dev.fraporti.atividade_9.exception.VeicExistException;
 import dev.fraporti.atividade_9.exception.VelocException;
+
+import static dev.fraporti.atividade_9.VeiculosDrive.imprimeCargaPelaPlaca;
+import static dev.fraporti.atividade_9.VeiculosDrive.imprimePasseioPelaPlaca;
 
 /**
  * @author vitor.rosmann on 13/03/2025
@@ -30,7 +34,11 @@ public abstract class Veiculo {
         return placa;
     }
 
-    public final void setPlaca(String placa) {
+    public final void setPlaca(String placa) throws VeicExistException {
+        if(imprimeCargaPelaPlaca(placa, true) != null || imprimePasseioPelaPlaca(placa, true) != null){
+            //System.out.println("Já existe um veiculo com esta placa cadastrado!");
+            throw new VeicExistException("Já existe um veiculo com esta placa cadastrado!");
+        }
         this.placa = placa;
     }
 

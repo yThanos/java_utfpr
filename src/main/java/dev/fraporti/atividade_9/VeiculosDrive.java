@@ -12,8 +12,8 @@ import dev.fraporti.atividade_9.exception.VelocException;
 /**
  * @author vitor.rosmann on 13/03/2025
  */
-public class Teste {
-    private static final BDVeiculos repository = new BDVeiculos();
+public class VeiculosDrive {
+    public static final BDVeiculos repository = new BDVeiculos();
 
     public static void main(String[] args) {
         menu();
